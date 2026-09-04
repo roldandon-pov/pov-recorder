@@ -1,0 +1,19 @@
+# Render Blueprint — POV recorder (Ruta A). Deploy: en Render → New → Blueprint →
+# elige el repo que contenga esta carpeta. Es un servicio web Docker en el plan
+# FREE (sin tarjeta). Pon los 3 secrets en el dashboard (marcados sync:false).
+services:
+  - type: web
+    name: pov-recorder
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: MUX_TOKEN_ID
+        sync: false
+      - key: MUX_TOKEN_SECRET
+        sync: false
+      - key: RECORDER_SECRET
+        sync: false
